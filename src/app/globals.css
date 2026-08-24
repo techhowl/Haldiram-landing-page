@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal-deep: #0d3b3e;
+  --teal: #134548;
+  --cream: #f7f0e3;
+  --burgundy: #8a1538;
+  --gold: #c9a24b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream);
+  color: #26221c;
+  overflow-x: hidden;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Fine gold hairline divider used across sections */
+.hairline-gold {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold) 20%,
+    var(--gold) 80%,
+    transparent
+  );
+  height: 1px;
+}
+
+/*
+ * Repeating diamond-lattice line-art used as a subtle section texture.
+ * Bakes its own vertical gradient into the same background-image stack —
+ * layering it via a separate Tailwind `bg-gradient-*` utility on the same
+ * element would just overwrite this rule's background-image in the
+ * cascade (both set the same property).
+ */
+.pattern-lattice-dark {
+  background-color: var(--teal-deep);
+  background-image:
+    linear-gradient(45deg, rgba(201, 162, 75, 0.14) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(201, 162, 75, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--teal), var(--teal-deep));
+  background-size: 42px 42px, 42px 42px, 100% 100%;
+}
+
+.text-shadow-gold {
+  text-shadow: 0 2px 18px rgba(201, 162, 75, 0.35);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
