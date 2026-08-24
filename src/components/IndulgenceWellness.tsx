@@ -40,21 +40,30 @@ export default function IndulgenceWellness() {
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_0.75fr] gap-10 lg:gap-16 items-center">
           {/* Editorial text block */}
-          <div className="max-w-xl pl-6 sm:pl-10 lg:pl-14">
-            <h2 className="font-display leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
-              <span className="block text-teal-deep">Ranging from Pure</span>
-              <span className="block text-burgundy font-semibold text-4xl sm:text-5xl lg:text-6xl">
+          <div className="max-w-xl pl-10 sm:pl-16 lg:pl-24">
+            <h2 className="leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
+              <span className="block font-latinka font-normal text-teal-deep">Ranging from Pure</span>
+              <span className="block font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
                 Indulgence
               </span>
-              <span className="block text-teal-deep pl-10 sm:pl-14">To Wholesome</span>
-              <span className="block text-burgundy font-semibold text-4xl sm:text-5xl lg:text-6xl pl-14 sm:pl-20">
-                Wellness
+              <span className="flex items-baseline pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
+                <span className="whitespace-pre">To </span>
+                <span>Wholesome</span>
+              </span>
+              <span className="flex items-baseline pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
+                <span
+                  aria-hidden="true"
+                  className="invisible whitespace-pre font-latinka text-3xl sm:text-4xl lg:text-5xl"
+                >
+                  To{" "}
+                </span>
+                <span>Wellness</span>
               </span>
             </h2>
 
             <span className="mt-6 block h-[3px] w-64 sm:w-80 lg:w-96 bg-burgundy" />
 
-            <p className="mt-4 text-teal-deep text-2xl sm:text-3xl">
+            <p className="mt-4 font-latinka font-normal text-teal-deep text-3xl sm:text-4xl">
               Explore our
               <br />
               complete range

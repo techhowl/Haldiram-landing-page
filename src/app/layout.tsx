@@ -1,19 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Cormorant_Garamond, Inter, Fraunces } from "next/font/google";
+import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 const latinka = localFont({
-  src: "../fonts/Latinka-Regular.ttf",
-  weight: "400",
+  src: [
+    { path: "../fonts/Latinka-Light.ttf", weight: "300" },
+    { path: "../fonts/Latinka-Regular.ttf", weight: "400" },
+  ],
   variable: "--font-latinka",
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal"],
+const canela = localFont({
+  src: "../fonts/Canela-Regular-Trial.otf",
+  weight: "400",
   variable: "--font-canela",
   display: "swap",
 });
@@ -92,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${cormorant.variable} ${inter.variable} ${latinka.variable} ${fraunces.variable} font-sans antialiased`}
+        className={`${playfair.variable} ${cormorant.variable} ${inter.variable} ${latinka.variable} ${canela.variable} font-sans antialiased`}
       >
         {children}
       </body>

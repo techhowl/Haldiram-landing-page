@@ -55,7 +55,7 @@ export default function HamperCategories() {
           <AnimatedFromTo />
 
           <div className="mt-4 flex justify-center">
-            <span className="inline-block bg-burgundy text-cream-light font-latinka font-normal text-lg sm:text-xl lg:text-2xl px-8 py-3 sm:px-10 sm:py-4 rounded-2xl">
+            <span className="inline-block whitespace-nowrap text-center bg-burgundy text-cream-light font-latinka font-normal text-2xl sm:text-3xl lg:text-4xl px-8 py-4 sm:px-12 sm:py-5 rounded-2xl">
               Hampers to celebrate every connection.
             </span>
           </div>

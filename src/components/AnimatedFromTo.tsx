@@ -29,33 +29,40 @@ export default function AnimatedFromTo() {
   const pair = WORD_PAIRS[index];
 
   return (
-    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">
-      <span className="text-teal-deep">From </span>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={pair.from}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-          className="inline-block text-burgundy font-semibold"
-        >
-          {pair.from}
-        </motion.span>
-      </AnimatePresence>
-      <span className="text-teal-deep"> | To </span>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={pair.to}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-          className="inline-block text-burgundy font-semibold"
-        >
-          {pair.to}
-        </motion.span>
-      </AnimatePresence>
+    <h2 className="font-display leading-tight flex items-center justify-center gap-6 sm:gap-8 lg:gap-10">
+      <span className="flex flex-col items-start">
+        <span className="font-latinka font-normal text-teal-deep text-xl sm:text-2xl lg:text-3xl">From</span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={pair.from}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="inline-block text-burgundy font-semibold text-4xl sm:text-5xl lg:text-6xl"
+          >
+            {pair.from}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+
+      <span aria-hidden="true" className="h-16 sm:h-20 lg:h-24 w-px bg-teal-deep/40" />
+
+      <span className="flex flex-col items-start">
+        <span className="font-latinka font-normal text-teal-deep text-xl sm:text-2xl lg:text-3xl">To</span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={pair.to}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="inline-block text-burgundy font-semibold text-4xl sm:text-5xl lg:text-6xl"
+          >
+            {pair.to}
+          </motion.span>
+        </AnimatePresence>
+      </span>
     </h2>
   );
 }

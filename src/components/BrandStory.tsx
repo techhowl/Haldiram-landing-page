@@ -3,21 +3,21 @@ import CTAButton from "./CTAButton";
 
 interface Feature {
   icon: string;
-  title: string;
+  titleLines: [string, string];
 }
 
 const features: Feature[] = [
   {
     icon: "/images/icons/express-delivery 1.png",
-    title: "Delivering Pan India",
+    titleLines: ["Delivering", "Pan India"],
   },
   {
     icon: "/images/icons/discount 1.png",
-    title: "Special Discounts on Bulk Orders",
+    titleLines: ["Special Discounts", "on Bulk Orders"],
   },
   {
     icon: "/images/icons/gift (1) 1.png",
-    title: "Wide Range of Hampers for Every Need",
+    titleLines: ["Wide Range of Hampers", "for Every Need"],
   },
 ];
 
@@ -49,12 +49,12 @@ export default function BrandStory() {
       />
 
       <div className="relative mx-auto max-w-content px-4 sm:px-6 lg:px-10 text-center">
-        <h2 className="font-sans font-normal text-cream-light text-3xl sm:text-4xl lg:text-5xl leading-tight">
+        <h2 className="font-latinka font-normal text-cream-light text-3xl sm:text-4xl lg:text-5xl leading-tight">
           At the heart of
           <br />
           every celebration
         </h2>
-        <p className="mt-3 font-canela uppercase text-cream-light text-5xl sm:text-6xl lg:text-7xl tracking-[0.1em] font-semibold">
+        <p className="mt-0 font-canela font-normal leading-none uppercase text-cream-light text-[72px] tracking-wide">
           Since 1937
         </p>
 
@@ -67,19 +67,21 @@ export default function BrandStory() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           {features.map((feature) => (
             <div
-              key={feature.title}
+              key={feature.titleLines.join(" ")}
               className="flex flex-col items-center justify-center gap-4 w-[356px] h-[214px] rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
             >
-              <Image src={feature.icon} alt="" aria-hidden="true" width={56} height={56} className="w-12 h-12 sm:w-14 sm:h-14" />
-              <h3 className="text-cream-light font-semibold text-sm sm:text-base uppercase tracking-wide">
-                {feature.title}
+              <Image src={feature.icon} alt="" aria-hidden="true" width={72} height={72} className="w-16 h-16 sm:w-[72px] sm:h-[72px]" />
+              <h3 className="font-latinka font-light text-cream-light text-[20px] leading-snug uppercase tracking-wide">
+                {feature.titleLines[0]}
+                <br />
+                {feature.titleLines[1]}
               </h3>
             </div>
           ))}
         </div>
 
         <div className="mt-12">
-          <CTAButton variant="gold" type="button" className="rounded-full">
+          <CTAButton variant="gold" type="button" className="rounded-xl">
             Get Quote
           </CTAButton>
         </div>

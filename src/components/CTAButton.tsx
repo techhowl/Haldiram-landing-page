@@ -12,7 +12,7 @@ const VARIANT_CLASSES: Record<Variant, string> = {
   outline:
     "bg-transparent text-gold border border-gold hover:bg-gold hover:text-teal-deep",
   gold:
-    "bg-gradient-to-b from-gold-light to-gold text-burgundy-dark border border-gold-dark/60 hover:from-gold hover:to-gold-dark",
+    "bg-gradient-to-br from-gold-light via-gold to-gold-dark text-burgundy-dark border border-[#8a4a1f]/70 shadow-md hover:from-gold hover:to-gold-dark",
 };
 
 export default function CTAButton({
