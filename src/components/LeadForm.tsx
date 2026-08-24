@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { LeadFormData, LeadFormErrors, LeadApiResponse } from "@/types/lead";
+import { captureAttribution, getAttribution } from "@/lib/attribution";
 import CTAButton from "./CTAButton";
 
 const INITIAL_STATE: LeadFormData = {
@@ -54,6 +55,12 @@ export default function LeadForm() {
   const formId = useId();
   const isSubmittingRef = useRef(false);
 
+  // Stamp the visit's campaign/referrer data as soon as the page is
+  // interactive, before any internal navigation can strip the query string.
+  useEffect(() => {
+    captureAttribution();
+  }, []);
+
   function handleChange(field: keyof LeadFormData, value: string) {
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field as keyof LeadFormErrors]) {
@@ -83,7 +90,7 @@ export default function LeadForm() {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, attribution: getAttribution() }),
       });
 
       const result: LeadApiResponse = await res.json();

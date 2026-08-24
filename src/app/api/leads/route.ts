@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { appendLeadToSheet } from "@/lib/googleSheets";
-import type { LeadApiResponse, LeadFormErrors } from "@/types/lead";
+import { appendLeadToSheet } from "@/lib/leadsSheet";
+import type { AttributionData } from "@/lib/attribution";
+import type { LeadApiResponse, LeadFormErrors, ServerMeta } from "@/types/lead";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^[0-9+\-\s()]{7,20}$/;
 const HAMPERS_REGEX = /^[0-9]{1,5}$/;
 const MAX_LENGTH = 1000;
+/** Attribution values are machine-generated; cap them tighter than free text. */
+const MAX_ATTRIBUTION_LENGTH = 500;
 
-function sanitize(value: unknown): string {
+function sanitize(value: unknown, maxLength = MAX_LENGTH): string {
   if (typeof value !== "string") return "";
   return value
     .replace(/<[^>]*>/g, "")
     .trim()
-    .slice(0, MAX_LENGTH);
+    .slice(0, maxLength);
 }
 
 interface ValidatedLead {
@@ -65,6 +68,63 @@ function validate(body: Record<string, unknown>): {
   };
 }
 
+const ATTRIBUTION_KEYS: readonly (keyof AttributionData)[] = [
+  "channel",
+  "source",
+  "medium",
+  "campaign",
+  "term",
+  "content",
+  "clickId",
+  "clickIdType",
+  "referrer",
+  "landingPage",
+  "firstTouchChannel",
+  "firstTouchSource",
+  "firstTouchCampaign",
+  "firstTouchReferrer",
+  "firstTouchLandingPage",
+  "firstTouchAt",
+  "visitCount",
+  "submittedPage",
+  "deviceType",
+  "screenSize",
+  "language",
+  "timezone",
+];
+
+/**
+ * Attribution comes from the browser, so it's untrusted like any other input —
+ * every key is sanitized and anything unrecognised is dropped rather than
+ * forwarded to the sheet.
+ */
+function sanitizeAttribution(value: unknown): AttributionData {
+  const raw = (typeof value === "object" && value !== null ? value : {}) as Record<string, unknown>;
+  const result = {} as AttributionData;
+
+  for (const key of ATTRIBUTION_KEYS) {
+    result[key] = sanitize(raw[key], MAX_ATTRIBUTION_LENGTH);
+  }
+
+  return result;
+}
+
+/**
+ * Headers the visitor cannot forge from the page. Geo headers are populated by
+ * Vercel/Cloudflare in production and are simply blank elsewhere.
+ */
+function readServerMeta(request: NextRequest): ServerMeta {
+  const header = (name: string) => sanitize(request.headers.get(name), MAX_ATTRIBUTION_LENGTH);
+
+  return {
+    userAgent: header("user-agent"),
+    ipCountry: header("x-vercel-ip-country") || header("cf-ipcountry"),
+    ipRegion: header("x-vercel-ip-country-region"),
+    ipCity: decodeURIComponent(header("x-vercel-ip-city") || ""),
+    requestReferer: header("referer"),
+  };
+}
+
 export async function POST(request: NextRequest) {
   let body: Record<string, unknown>;
 
@@ -105,8 +165,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await appendLeadToSheet(data);
-  } catch {
+    await appendLeadToSheet({
+      ...data,
+      attribution: sanitizeAttribution(body.attribution),
+      serverMeta: readServerMeta(request),
+    });
+  } catch (error) {
+    // Surfaced in the server logs / Vercel function logs only — the visitor
+    // gets the generic message below.
+    console.error("[leads] Failed to append lead to sheet:", error);
+
     const response: LeadApiResponse = {
       success: false,
       message: "We couldn't submit your request right now. Please try again in a moment.",
