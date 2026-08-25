@@ -134,7 +134,7 @@ export default function LeadForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="relative w-[300px] sm:w-[380px] lg:w-[500px]">
+    <div className="relative w-[300px] sm:w-[380px] min-[1360px]:w-[500px]">
       {/*
         The card's visual chrome (scalloped burgundy seal + gold trim + hanging
         pin ornament) is the supplied frame artwork, not CSS. Its native aspect

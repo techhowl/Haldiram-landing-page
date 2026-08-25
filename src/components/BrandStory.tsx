@@ -105,7 +105,7 @@ export default function BrandStory() {
               }}
               whileHover={{ scale: 1.04, y: -4 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex flex-col items-center justify-center gap-4 w-[356px] h-[214px] rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+              className="flex flex-col items-center justify-center gap-4 w-full max-w-[356px] h-[214px] rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
             >
               <Image src={feature.icon} alt="" aria-hidden="true" width={72} height={72} className="w-16 h-16 sm:w-[72px] sm:h-[72px]" />
               <h3 className="font-latinka font-light text-cream-light text-[20px] leading-snug uppercase tracking-wide">

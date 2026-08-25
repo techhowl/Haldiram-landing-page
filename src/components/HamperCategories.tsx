@@ -61,7 +61,7 @@ export default function HamperCategories() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
             className="mt-4 flex justify-center"
           >
-            <span className="inline-block whitespace-nowrap text-center bg-burgundy text-cream-light font-latinka font-normal text-2xl sm:text-3xl lg:text-4xl px-8 py-4 sm:px-12 sm:py-5 rounded-2xl">
+            <span className="inline-block whitespace-normal sm:whitespace-nowrap text-center bg-burgundy text-cream-light font-latinka font-normal text-base leading-snug sm:text-3xl lg:text-4xl px-5 py-3 sm:px-12 sm:py-5 rounded-2xl max-w-[92vw] sm:max-w-none">
               Hampers to celebrate every connection.
             </span>
           </motion.div>

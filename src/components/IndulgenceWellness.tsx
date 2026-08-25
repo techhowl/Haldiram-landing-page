@@ -55,11 +55,11 @@ export default function IndulgenceWellness() {
               <span className="block font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
                 Indulgence
               </span>
-              <span className="flex items-baseline mt-2 sm:mt-3 pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
+              <span className="flex items-baseline mt-2 sm:mt-3 pl-8 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
                 <span className="whitespace-pre">To </span>
                 <span>Wholesome</span>
               </span>
-              <span className="flex items-baseline pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
+              <span className="flex items-baseline pl-8 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
                 <span
                   aria-hidden="true"
                   className="invisible whitespace-pre font-latinka text-3xl sm:text-4xl lg:text-5xl"

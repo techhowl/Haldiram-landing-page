@@ -33,16 +33,20 @@ export default function Hero() {
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-deep/40 via-transparent to-teal-deep/10" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-black/50 sm:hidden"
+        />
 
         {/* Heading + CTA over the photograph */}
-        <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 lg:p-10">
-          <div className="max-w-[75%] sm:max-w-md lg:max-w-2xl">
+        <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 min-[1360px]:p-10">
+          <div className="max-w-[75%] sm:max-w-md min-[1360px]:max-w-2xl">
             <motion.p
               initial="hidden"
               animate="show"
               custom={0}
               variants={fadeUp}
-              className="font-canela font-normal text-base sm:text-3xl lg:text-[48px] text-gold mb-0.5 sm:mb-1 text-shadow-gold whitespace-nowrap"
+              className="font-canela font-normal text-base sm:text-3xl min-[1360px]:text-[48px] text-gold mb-0.5 sm:mb-1 text-shadow-gold whitespace-nowrap"
             >
               Festive
             </motion.p>
@@ -51,7 +55,7 @@ export default function Hero() {
               animate="show"
               custom={0.15}
               variants={fadeUp}
-              className="inline-block font-canela font-normal uppercase bg-gradient-to-r from-[#FFD279] to-[#BD8B28] bg-clip-text text-transparent text-shadow-gold text-2xl sm:text-5xl lg:text-[72px] leading-[1.1] tracking-wide whitespace-nowrap"
+              className="inline-block font-canela font-normal uppercase bg-gradient-to-r from-[#FFD279] to-[#BD8B28] bg-clip-text text-transparent text-shadow-gold text-2xl sm:text-5xl min-[1360px]:text-[72px] leading-[1.1] tracking-wide whitespace-nowrap"
             >
               Gifting Hampers
             </motion.h1>
@@ -60,22 +64,22 @@ export default function Hero() {
               animate="show"
               custom={0.3}
               variants={fadeUp}
-              className="flex items-baseline mt-[5px] mb-[16px] font-canela font-normal text-gold text-shadow-gold text-base sm:text-3xl lg:text-[48px] leading-[1.1] tracking-wide whitespace-nowrap"
+              className="flex items-baseline mt-[5px] mb-[16px] font-canela font-normal text-gold text-shadow-gold text-base sm:text-3xl min-[1360px]:text-[48px] leading-[1.1] tracking-wide whitespace-nowrap"
             >
               <span
                 aria-hidden="true"
-                className="invisible inline-block h-0 overflow-hidden leading-[0] whitespace-pre uppercase text-2xl sm:text-5xl lg:text-[72px]"
+                className="invisible inline-block h-0 overflow-hidden leading-[0] whitespace-pre uppercase text-2xl sm:text-5xl min-[1360px]:text-[72px]"
               >
                 Gifting{" "}
               </span>
-              <span className="ml-8 sm:ml-14 lg:ml-20">by Haldiram&rsquo;s</span>
+              <span className="ml-8 sm:ml-14 min-[1360px]:ml-20">by Haldiram&rsquo;s</span>
             </motion.p>
             <motion.p
               initial="hidden"
               animate="show"
               custom={0.45}
               variants={fadeUp}
-              className="text-right mr-1 sm:mr-1 lg:mr-1 font-latinka font-normal text-cream-light text-xs sm:text-base lg:text-[20px] text-shadow-gold whitespace-nowrap"
+              className="text-right mr-1 sm:mr-1 min-[1360px]:mr-1 font-latinka font-normal text-cream-light text-xs sm:text-base min-[1360px]:text-[20px] text-shadow-gold whitespace-nowrap"
             >
               Let the taste of tradition
               <br />
@@ -90,7 +94,7 @@ export default function Hero() {
         absolutely overlaid on the right side of the banner at `lg`, where
         it no longer contributes to the section's flow height.
       */}
-      <div className="px-4 sm:px-6 py-8 flex justify-center lg:absolute lg:inset-y-0 lg:right-24 lg:py-0 lg:px-0 lg:items-center lg:justify-end lg:z-10">
+      <div className="px-4 sm:px-6 py-8 flex justify-center min-[1360px]:absolute min-[1360px]:inset-y-0 min-[1360px]:right-24 min-[1360px]:py-0 min-[1360px]:px-0 min-[1360px]:items-center min-[1360px]:justify-end min-[1360px]:z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
