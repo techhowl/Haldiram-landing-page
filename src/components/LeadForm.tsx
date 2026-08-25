@@ -47,6 +47,17 @@ function validate(data: LeadFormData): LeadFormErrors {
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
+const BROCHURE_PATH = "/images/hampers/Haldirams 2026 - Hamper Catalogue.pdf";
+
+function downloadBrochure() {
+  const link = document.createElement("a");
+  link.href = encodeURI(BROCHURE_PATH);
+  link.download = "Haldirams 2026 - Hamper Catalogue.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 export default function LeadForm() {
   const [formData, setFormData] = useState<LeadFormData>(INITIAL_STATE);
   const [errors, setErrors] = useState<LeadFormErrors>({});
@@ -106,9 +117,10 @@ export default function LeadForm() {
 
       setStatus("success");
       setStatusMessage(
-        "Thank you! Your enquiry has been received — our team will reach out shortly."
+        "Thank you! Your enquiry has been received — your brochure download will begin shortly."
       );
       setFormData(INITIAL_STATE);
+      downloadBrochure();
     } catch {
       setStatus("error");
       setStatusMessage(
