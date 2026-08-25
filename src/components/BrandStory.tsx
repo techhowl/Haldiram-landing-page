@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import CTAButton from "./CTAButton";
 
 interface Feature {
@@ -49,25 +52,59 @@ export default function BrandStory() {
       />
 
       <div className="relative mx-auto max-w-content px-4 sm:px-6 lg:px-10 text-center">
-        <h2 className="font-latinka font-normal text-cream-light text-3xl sm:text-4xl lg:text-5xl leading-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="font-latinka font-normal text-cream-light text-3xl sm:text-4xl lg:text-5xl leading-tight"
+        >
           At the heart of
           <br />
           every celebration
-        </h2>
-        <p className="mt-0 font-canela font-normal leading-none uppercase text-cream-light text-[72px] tracking-wide">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+          className="mt-0 font-canela font-normal leading-none uppercase text-cream-light text-[72px] tracking-wide"
+        >
           Since 1937
-        </p>
+        </motion.p>
 
-        <div className="mt-8 flex items-center justify-center gap-3" aria-hidden="true">
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+          className="mt-8 flex items-center justify-center gap-3"
+          aria-hidden="true"
+        >
           <span className="h-0 w-full max-w-[220px] border-t border-dashed border-[#9fe3ec]/60" />
           <span className="text-[#9fe3ec]/80 text-base">✦</span>
           <span className="h-0 w-full max-w-[220px] border-t border-dashed border-[#9fe3ec]/60" />
-        </div>
+        </motion.div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.12 } },
+          }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-6"
+        >
           {features.map((feature) => (
-            <div
+            <motion.div
               key={feature.titleLines.join(" ")}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+              }}
+              whileHover={{ scale: 1.04, y: -4 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className="flex flex-col items-center justify-center gap-4 w-[356px] h-[214px] rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
             >
               <Image src={feature.icon} alt="" aria-hidden="true" width={72} height={72} className="w-16 h-16 sm:w-[72px] sm:h-[72px]" />
@@ -76,15 +113,23 @@ export default function BrandStory() {
                 <br />
                 {feature.titleLines[1]}
               </h3>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12">
-          <CTAButton variant="gold" type="button" className="rounded-xl">
-            Get Quote
-          </CTAButton>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="mt-12"
+        >
+          <a href="#hero">
+            <CTAButton variant="gold" type="button" className="rounded-xl">
+              Get Quote
+            </CTAButton>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

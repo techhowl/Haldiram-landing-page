@@ -1,8 +1,15 @@
+"use client";
+
 import type { ButtonHTMLAttributes } from "react";
+import { motion } from "framer-motion";
 
 type Variant = "solid" | "outline" | "gold";
 
-interface CTAButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface CTAButtonProps
+  extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration" | "onDrag" | "onDragEnd" | "onDragStart"
+  > {
   variant?: Variant;
 }
 
@@ -22,11 +29,14 @@ export default function CTAButton({
   ...props
 }: CTAButtonProps) {
   return (
-    <button
+    <motion.button
       {...props}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       className={`inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-semibold tracking-[0.15em] uppercase transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${VARIANT_CLASSES[variant]} ${className}`}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

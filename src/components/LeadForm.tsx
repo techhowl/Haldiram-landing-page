@@ -146,7 +146,7 @@ export default function LeadForm() {
         by 1/aspect-ratio to land in the same visual spot despite that.
       */}
       <div className="relative px-[9%] pt-[43%] pb-[43%]">
-        <p className="font-display font-semibold text-[11px] sm:text-sm leading-snug text-center text-gold mb-3 px-1 whitespace-nowrap">
+        <p className="font-display font-semibold text-[20px] leading-snug text-center text-gold mb-3 px-1 whitespace-nowrap">
           Questions, Feedback, Or Inquiries?
           <br />
           We&rsquo;re Just A Message Away.
@@ -264,7 +264,7 @@ export default function LeadForm() {
             disabled={isSubmitting}
             className="w-full mt-1 rounded-full"
           >
-            {isSubmitting ? "Submitting..." : "Submit"}
+            {isSubmitting ? "Submitting..." : "Download"}
           </CTAButton>
         </form>
       </div>

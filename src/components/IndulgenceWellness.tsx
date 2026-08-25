@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface WellnessCard {
   label: string;
@@ -40,13 +43,19 @@ export default function IndulgenceWellness() {
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_0.75fr] gap-10 lg:gap-16 items-center">
           {/* Editorial text block */}
-          <div className="max-w-xl pl-10 sm:pl-16 lg:pl-24">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-xl pl-10 sm:pl-16 lg:pl-24"
+          >
             <h2 className="leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
               <span className="block font-latinka font-normal text-teal-deep">Ranging from Pure</span>
               <span className="block font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
                 Indulgence
               </span>
-              <span className="flex items-baseline pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
+              <span className="flex items-baseline mt-2 sm:mt-3 pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
                 <span className="whitespace-pre">To </span>
                 <span>Wholesome</span>
               </span>
@@ -68,24 +77,42 @@ export default function IndulgenceWellness() {
               <br />
               complete range
             </p>
-          </div>
+          </motion.div>
 
           {/* Stacked image cards */}
-          <div className="flex flex-col gap-6 sm:gap-8">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.15 } },
+            }}
+            className="flex flex-col gap-6 sm:gap-8"
+          >
             {wellnessCards.map((card) => (
-              <div key={card.label} className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-card bg-cream-dark">
+              <motion.div
+                key={card.label}
+                variants={{
+                  hidden: { opacity: 0, x: 30 },
+                  show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+                }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-card bg-cream-dark"
+              >
                 <Image
                   src={card.image}
                   alt={card.label}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-[#FFD279] text-burgundy text-xs sm:text-sm font-semibold uppercase tracking-wide leading-snug py-3 px-5">
                   {card.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

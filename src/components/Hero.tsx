@@ -1,6 +1,18 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import CTAButton from "./CTAButton";
 import LeadForm from "./LeadForm";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" as const, delay },
+  }),
+};
 
 export default function Hero() {
   return (
@@ -24,27 +36,51 @@ export default function Hero() {
 
         {/* Heading + CTA over the photograph */}
         <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-6 lg:p-10">
-          <div className="max-w-[75%] sm:max-w-sm lg:max-w-xl">
-            <p className="font-display text-base sm:text-2xl lg:text-3xl text-gold italic mb-0.5 sm:mb-1 text-shadow-gold whitespace-nowrap">
+          <div className="max-w-[75%] sm:max-w-md lg:max-w-2xl">
+            <motion.p
+              initial="hidden"
+              animate="show"
+              custom={0}
+              variants={fadeUp}
+              className="font-canela font-normal text-base sm:text-3xl lg:text-[48px] text-gold mb-0.5 sm:mb-1 text-shadow-gold whitespace-nowrap"
+            >
               Festive
-            </p>
-            <h1 className="font-serif font-bold text-gold-light text-shadow-gold text-xl sm:text-3xl lg:text-5xl leading-[1.1] tracking-wide uppercase whitespace-nowrap">
+            </motion.p>
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              custom={0.15}
+              variants={fadeUp}
+              className="inline-block font-canela font-normal uppercase bg-gradient-to-r from-[#FFD279] to-[#BD8B28] bg-clip-text text-transparent text-shadow-gold text-2xl sm:text-5xl lg:text-[72px] leading-[1.1] tracking-wide whitespace-nowrap"
+            >
               Gifting Hampers
-            </h1>
-            <p className="font-display text-gold text-xs sm:text-lg lg:text-xl italic text-right -mt-0.5 sm:-mt-1 whitespace-nowrap">
-              by Haldiram&rsquo;s
-            </p>
-            <p className="mt-1.5 sm:mt-4 text-cream-light text-[11px] sm:text-sm lg:text-base font-semibold text-center text-shadow-gold">
+            </motion.h1>
+            <motion.p
+              initial="hidden"
+              animate="show"
+              custom={0.3}
+              variants={fadeUp}
+              className="flex items-baseline mt-[5px] mb-[16px] font-canela font-normal text-gold text-shadow-gold text-base sm:text-3xl lg:text-[48px] leading-[1.1] tracking-wide whitespace-nowrap"
+            >
+              <span
+                aria-hidden="true"
+                className="invisible inline-block h-0 overflow-hidden leading-[0] whitespace-pre uppercase text-2xl sm:text-5xl lg:text-[72px]"
+              >
+                Gifting{" "}
+              </span>
+              <span className="ml-8 sm:ml-14 lg:ml-20">by Haldiram&rsquo;s</span>
+            </motion.p>
+            <motion.p
+              initial="hidden"
+              animate="show"
+              custom={0.45}
+              variants={fadeUp}
+              className="text-right mr-1 sm:mr-1 lg:mr-1 font-latinka font-normal text-cream-light text-xs sm:text-base lg:text-[20px] text-shadow-gold whitespace-nowrap"
+            >
               Let the taste of tradition
               <br />
               sweeten your celebrations
-            </p>
-          </div>
-
-          <div>
-            <CTAButton variant="solid" className="rounded-full !px-4 !py-1.5 sm:!px-8 sm:!py-3 text-xs sm:text-sm">
-              Get Quote
-            </CTAButton>
+            </motion.p>
           </div>
         </div>
       </div>
@@ -55,7 +91,13 @@ export default function Hero() {
         it no longer contributes to the section's flow height.
       */}
       <div className="px-4 sm:px-6 py-8 flex justify-center lg:absolute lg:inset-y-0 lg:right-24 lg:py-0 lg:px-0 lg:items-center lg:justify-end lg:z-10">
-        <LeadForm />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.6 }}
+        >
+          <LeadForm />
+        </motion.div>
       </div>
     </section>
   );
