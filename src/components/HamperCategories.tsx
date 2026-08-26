@@ -31,7 +31,7 @@ const hamperCategories: HamperCategory[] = [
 
 export default function HamperCategories() {
   return (
-    <section id="hamper-categories" className="relative bg-cream-light py-16 sm:py-20 overflow-hidden">
+    <section id="hamper-categories" className="relative bg-cream-light py-6 sm:py-20 overflow-hidden">
       {/* Decorative half-mandala motifs bleeding flush from the left/right edges */}
       <Image
         src="/images/patterns/mand-left.webp"
@@ -66,7 +66,7 @@ export default function HamperCategories() {
             </span>
           </motion.div>
 
-          <SectionDivider className="mt-8 mb-2" />
+          <SectionDivider className="mt-4 sm:mt-8 mb-2" />
         </div>
 
         <motion.div
@@ -77,7 +77,7 @@ export default function HamperCategories() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12 } },
           }}
-          className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-6"
+          className="mt-4 sm:mt-8 grid grid-cols-3 gap-2 sm:gap-6"
         >
           {hamperCategories.map((category) => (
             <motion.a
@@ -90,7 +90,7 @@ export default function HamperCategories() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="group block rounded-2xl overflow-hidden shadow-card focus-visible:outline-2 focus-visible:outline-gold"
+              className="group block rounded-lg sm:rounded-2xl overflow-hidden shadow-card focus-visible:outline-2 focus-visible:outline-gold"
             >
               <div className="relative w-full aspect-[4/5] bg-cream-dark">
                 <Image
@@ -99,7 +99,7 @@ export default function HamperCategories() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute bottom-0 left-0 right-0 flex items-center min-h-[76px] sm:min-h-[88px] bg-[#FFD279] text-burgundy text-sm sm:text-base font-semibold uppercase tracking-wide leading-snug py-4 px-5">
+                <div className="absolute bottom-0 left-0 right-0 flex items-center min-h-[34px] sm:min-h-[88px] bg-[#FFD279] text-burgundy text-[8px] sm:text-base font-semibold uppercase tracking-wide leading-[1.15] sm:leading-snug py-1 px-1.5 sm:py-4 sm:px-5">
                   {category.title}
                 </div>
               </div>

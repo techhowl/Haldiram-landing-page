@@ -134,22 +134,31 @@ export default function LeadForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="relative w-[300px] sm:w-[380px] min-[1360px]:w-[500px]">
+    <div className="relative isolate w-[300px] sm:w-[380px] min-[1360px]:w-[500px]">
       {/*
-        The card's visual chrome (scalloped burgundy seal + gold trim + hanging
-        pin ornament) is the supplied frame artwork, not CSS. Its native aspect
-        is close to what this content needs at these widths, so object-fill
-        stretches it a hair rather than locking the container to the image's
-        exact ratio (which would starve the 6-field form of vertical room) or
-        letterboxing (which would leave gaps).
+        Desktop/tablet: the scalloped seal + gold trim + hanging pin ornament
+        is the supplied frame artwork, not CSS. object-fill stretches it a
+        hair rather than locking the container to the image's exact ratio
+        (which would starve the 6-field form of vertical room).
       */}
       <Image
         src="/images/hero/form-frame.webp"
         alt=""
         aria-hidden="true"
         fill
+        priority
         sizes="(max-width: 1024px) 90vw, 420px"
-        className="object-fill -z-10 pointer-events-none select-none"
+        className="hidden sm:block object-fill -z-10 pointer-events-none select-none"
+      />
+      {/* Mobile: a simpler scalloped card, purpose-built for the compact form. */}
+      <Image
+        src="/images/hero/mobile-vec.png"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        sizes="300px"
+        className="sm:hidden object-fill -z-10 pointer-events-none select-none"
       />
       {/*
         Note: CSS resolves top/bottom padding percentages against the
@@ -157,14 +166,14 @@ export default function LeadForm() {
         these aren't the raw "% down the image" measurements, they're scaled
         by 1/aspect-ratio to land in the same visual spot despite that.
       */}
-      <div className="relative px-[9%] pt-[43%] pb-[43%]">
-        <p className="font-display font-semibold text-[20px] leading-snug text-center text-gold mb-3 px-1 whitespace-nowrap">
+      <div className="relative px-[9%] pt-[9%] pb-[10%] sm:px-[9%] sm:pt-[43%] sm:pb-[43%]">
+        <p className="font-display font-semibold text-sm sm:text-[20px] leading-snug text-center text-gold mb-1.5 sm:mb-3 px-1 whitespace-nowrap">
           Questions, Feedback, Or Inquiries?
           <br />
           We&rsquo;re Just A Message Away.
         </p>
 
-        <form onSubmit={handleSubmit} noValidate className="space-y-2.5">
+        <form onSubmit={handleSubmit} noValidate className="space-y-1.5 sm:space-y-2.5">
           {/* Honeypot field — hidden from sighted users and screen readers, must stay empty */}
           <div className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
             <label htmlFor={`${formId}-company-hp`}>Do not fill this in</label>
@@ -263,7 +272,7 @@ export default function LeadForm() {
             />
           </FormField>
 
-          <div aria-live="polite" className="min-h-[1.25rem] text-sm">
+          <div aria-live="polite" className="min-h-[1rem] sm:min-h-[1.25rem] text-xs sm:text-sm">
             {status === "success" && <p className="text-gold font-medium">{statusMessage}</p>}
             {status === "error" && statusMessage && (
               <p className="text-red-200 font-medium">{statusMessage}</p>
@@ -274,9 +283,9 @@ export default function LeadForm() {
             type="submit"
             variant="gold"
             disabled={isSubmitting}
-            className="w-full mt-1 rounded-full"
+            className="w-full mt-0.5 sm:mt-1 rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm"
           >
-            {isSubmitting ? "Submitting..." : "Download"}
+            {isSubmitting ? "Submitting..." : "Download BROCHURE"}
           </CTAButton>
         </form>
       </div>
@@ -285,7 +294,7 @@ export default function LeadForm() {
 }
 
 function inputClasses(hasError: boolean) {
-  return `w-full bg-burgundy-pale/90 text-burgundy-dark text-sm px-4 py-2.5 rounded-full border ${
+  return `w-full bg-burgundy-pale/90 text-burgundy-dark text-xs sm:text-sm px-3.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full border ${
     hasError ? "border-red-400" : "border-transparent"
   } focus:border-gold outline-none placeholder:text-burgundy-dark/70`;
 }

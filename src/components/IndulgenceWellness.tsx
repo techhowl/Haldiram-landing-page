@@ -15,7 +15,7 @@ const wellnessCards: WellnessCard[] = [
 
 export default function IndulgenceWellness() {
   return (
-    <section id="indulgence-wellness" className="relative bg-[#F8F4EB] py-16 sm:py-20 overflow-hidden">
+    <section id="indulgence-wellness" className="relative bg-[#F8F4EB] py-6 sm:py-20 overflow-hidden">
       <Image
         src="/images/patterns/mandala-full.webp"
         alt=""
@@ -41,7 +41,7 @@ export default function IndulgenceWellness() {
           />
         </div>
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_0.75fr] gap-10 lg:gap-16 items-center">
+        <div className="mt-4 sm:mt-8 grid grid-cols-1 lg:grid-cols-[1fr_0.75fr] gap-4 sm:gap-10 lg:gap-16 items-center">
           {/* Editorial text block */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -50,19 +50,19 @@ export default function IndulgenceWellness() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-xl pl-10 sm:pl-16 lg:pl-24"
           >
-            <h2 className="leading-[1.1] text-3xl sm:text-4xl lg:text-5xl">
+            <h2 className="leading-[1.1] text-2xl sm:text-4xl lg:text-5xl">
               <span className="block font-latinka font-normal text-teal-deep">Ranging from Pure</span>
-              <span className="block font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
+              <span className="block font-canela font-normal text-burgundy text-3xl sm:text-5xl lg:text-6xl">
                 Indulgence
               </span>
-              <span className="flex items-baseline mt-2 sm:mt-3 pl-8 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
+              <span className="flex items-baseline mt-2 sm:mt-3 pl-6 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
                 <span className="whitespace-pre">To </span>
                 <span>Wholesome</span>
               </span>
-              <span className="flex items-baseline pl-8 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-4xl sm:text-5xl lg:text-6xl">
+              <span className="flex items-baseline pl-6 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-3xl sm:text-5xl lg:text-6xl">
                 <span
                   aria-hidden="true"
-                  className="invisible whitespace-pre font-latinka text-3xl sm:text-4xl lg:text-5xl"
+                  className="invisible whitespace-pre font-latinka text-2xl sm:text-4xl lg:text-5xl"
                 >
                   To{" "}
                 </span>
@@ -70,9 +70,9 @@ export default function IndulgenceWellness() {
               </span>
             </h2>
 
-            <span className="mt-6 block h-[3px] w-64 sm:w-80 lg:w-96 bg-burgundy" />
+            <span className="mt-2 sm:mt-6 block h-[3px] w-64 sm:w-80 lg:w-96 bg-burgundy" />
 
-            <p className="mt-4 font-latinka font-normal text-teal-deep text-3xl sm:text-4xl">
+            <p className="mt-1.5 sm:mt-4 font-latinka font-normal text-teal-deep text-2xl sm:text-4xl">
               Explore our
               <br />
               complete range
@@ -88,7 +88,7 @@ export default function IndulgenceWellness() {
               hidden: {},
               show: { transition: { staggerChildren: 0.15 } },
             }}
-            className="flex flex-col gap-6 sm:gap-8"
+            className="grid grid-cols-2 gap-2 sm:flex sm:flex-col sm:gap-8"
           >
             {wellnessCards.map((card) => (
               <motion.div
@@ -97,17 +97,17 @@ export default function IndulgenceWellness() {
                   hidden: { opacity: 0, x: 30 },
                   show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
                 }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-card bg-cream-dark"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                className="group relative z-0 hover:z-10 w-full aspect-[16/9] rounded-lg sm:rounded-2xl overflow-hidden shadow-card hover:shadow-[0_20px_50px_-10px_rgba(13,59,62,0.5)] transition-shadow duration-300 bg-cream-dark"
               >
                 <Image
                   src={card.image}
                   alt={card.label}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-[#FFD279] text-burgundy text-xs sm:text-sm font-semibold uppercase tracking-wide leading-snug py-3 px-5">
+                <div className="absolute bottom-0 left-0 right-0 bg-[#FFD279] text-burgundy text-[9px] sm:text-sm font-semibold uppercase tracking-wide leading-tight sm:leading-snug py-1 px-2 sm:py-3 sm:px-5">
                   {card.label}
                 </div>
               </motion.div>
