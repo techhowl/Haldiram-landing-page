@@ -14,17 +14,17 @@ interface HamperCategory {
 const hamperCategories: HamperCategory[] = [
   {
     title: "Employee Gifting Hampers",
-    image: "/images/hampers/employee-gifting-hampers.svg",
+    image: "/images/hero/section2-1.png",
     href: "#employee-gifting",
   },
   {
     title: "Special Partners & Clients Gifting Hampers",
-    image: "/images/hampers/partners-clients-gifting-hampers.svg",
+    image: "/images/hero/section2-2.png",
     href: "#partners-clients-gifting",
   },
   {
     title: "Personal Festive Hampers",
-    image: "/images/hampers/personal-festive-hampers.svg",
+    image: "/images/hero/section2-3.png",
     href: "#personal-festive",
   },
 ];
