@@ -15,14 +15,14 @@ const wellnessCards: WellnessCard[] = [
 
 export default function IndulgenceWellness() {
   return (
-    <section id="indulgence-wellness" className="relative bg-[#F8F4EB] py-6 sm:py-20 overflow-hidden">
+    <section id="indulgence-wellness" className="relative bg-cream-light py-6 sm:py-20 overflow-hidden">
       <Image
         src="/images/patterns/mandala-full.webp"
         alt=""
         aria-hidden="true"
         width={945}
         height={934}
-        className="pointer-events-none select-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[680px] lg:w-[820px] h-auto opacity-15"
+        className="pointer-events-none select-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] sm:w-[680px] h-auto opacity-15"
         style={{
           maskImage: "radial-gradient(circle, black 45%, transparent 80%)",
           WebkitMaskImage: "radial-gradient(circle, black 45%, transparent 80%)",
@@ -88,7 +88,7 @@ export default function IndulgenceWellness() {
               hidden: {},
               show: { transition: { staggerChildren: 0.15 } },
             }}
-            className="grid grid-cols-2 gap-2 sm:flex sm:flex-col sm:gap-8"
+            className="flex flex-col gap-4 sm:gap-8"
           >
             {wellnessCards.map((card) => (
               <motion.div
@@ -107,7 +107,7 @@ export default function IndulgenceWellness() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-[#FFD279] text-burgundy text-[9px] sm:text-sm font-semibold uppercase tracking-wide leading-tight sm:leading-snug py-1 px-2 sm:py-3 sm:px-5">
+                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center bg-[#FFD279] text-burgundy text-[11px] sm:text-sm font-semibold uppercase tracking-[0.12em] sm:tracking-wide leading-tight sm:leading-snug py-2 px-3 sm:py-3 sm:px-5">
                   {card.label}
                 </div>
               </motion.div>

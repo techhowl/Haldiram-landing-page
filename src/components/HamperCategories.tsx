@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCards } from "swiper/modules";
 import SectionDivider from "./SectionDivider";
 import AnimatedFromTo from "./AnimatedFromTo";
+
+import "swiper/css";
+import "swiper/css/effect-cards";
 
 interface HamperCategory {
   title: string;
@@ -28,6 +33,10 @@ const hamperCategories: HamperCategory[] = [
     href: "#personal-festive",
   },
 ];
+
+// Swiper's loop mode needs more slides than we have categories, so the deck is
+// repeated; the repeats are hidden from assistive tech and keyboard focus.
+const deckSlides = [...hamperCategories, ...hamperCategories, ...hamperCategories];
 
 export default function HamperCategories() {
   return (
@@ -69,6 +78,54 @@ export default function HamperCategories() {
           <SectionDivider className="mt-4 sm:mt-8 mb-2" />
         </div>
 
+        {/* Mobile: shuffling deck of cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="sm:hidden mt-6 relative mx-auto flex w-full max-w-[340px] justify-center overflow-hidden py-2"
+        >
+          <Swiper
+            modules={[EffectCards]}
+            effect="cards"
+            grabCursor
+            loop
+            cardsEffect={{
+              perSlideOffset: 9,
+              perSlideRotate: 3,
+              slideShadows: true,
+            }}
+            className="w-[272px] h-[340px]"
+          >
+            {deckSlides.map((category, index) => (
+              <SwiperSlide
+                key={`${category.title}-${index}`}
+                className="rounded-xl overflow-hidden bg-cream-dark shadow-card"
+              >
+                <a
+                  href={category.href}
+                  className="block relative w-full h-full"
+                  aria-hidden={index >= hamperCategories.length ? true : undefined}
+                  tabIndex={index >= hamperCategories.length ? -1 : undefined}
+                >
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    fill
+                    sizes="272px"
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center min-h-[52px] bg-[#FFD279] text-burgundy text-xs font-semibold uppercase tracking-wide leading-snug px-3 py-2">
+                    {category.title}
+                  </div>
+                </a>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </motion.div>
+
+        {/* Tablet and up: three cards side by side */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -77,7 +134,7 @@ export default function HamperCategories() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12 } },
           }}
-          className="mt-4 sm:mt-8 grid grid-cols-3 gap-2 sm:gap-6"
+          className="hidden sm:grid mt-8 grid-cols-3 gap-6"
         >
           {hamperCategories.map((category) => (
             <motion.a
@@ -99,7 +156,7 @@ export default function HamperCategories() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute bottom-0 left-0 right-0 flex items-center min-h-[34px] sm:min-h-[88px] bg-[#FFD279] text-burgundy text-[8px] sm:text-base font-semibold uppercase tracking-wide leading-[1.15] sm:leading-snug py-1 px-1.5 sm:py-4 sm:px-5">
+                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center min-h-[34px] sm:min-h-[88px] bg-[#FFD279] text-burgundy text-[8px] sm:text-base font-semibold uppercase tracking-wide leading-[1.15] sm:leading-snug py-1 px-1.5 sm:py-4 sm:px-5">
                   {category.title}
                 </div>
               </div>

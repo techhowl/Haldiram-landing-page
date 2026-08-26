@@ -78,7 +78,7 @@ export default function BrandStory() {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-          className="mt-4 sm:mt-8 lg:mt-6 flex items-center justify-center gap-3"
+          className="mt-4 sm:mt-8 lg:mt-6 hidden sm:flex items-center justify-center gap-3"
           aria-hidden="true"
         >
           <span className="h-0 w-full max-w-[220px] border-t border-dashed border-[#9fe3ec]/60" />
@@ -94,7 +94,7 @@ export default function BrandStory() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12 } },
           }}
-          className="mt-4 sm:mt-10 lg:mt-6 grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-6"
+          className="mt-6 sm:mt-10 lg:mt-6 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-6"
         >
           {features.map((feature) => (
             <motion.div
@@ -105,13 +105,16 @@ export default function BrandStory() {
               }}
               whileHover={{ scale: 1.04, y: -4 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex flex-col items-center justify-center gap-1 sm:gap-4 w-full max-w-[356px] aspect-square sm:aspect-auto sm:h-[214px] rounded-lg sm:rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-1.5 sm:px-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+              className="flex flex-row sm:flex-col items-center justify-start sm:justify-center gap-3 sm:gap-4 w-full max-w-[356px] sm:aspect-auto sm:h-[214px] rounded-xl sm:rounded-2xl border border-white/25 bg-gradient-to-br from-white/20 via-white/5 to-white/[0.02] backdrop-blur-md px-4 py-3.5 sm:px-6 sm:py-0 shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
             >
-              <Image src={feature.icon} alt="" aria-hidden="true" width={72} height={72} className="w-6 h-6 sm:w-[72px] sm:h-[72px]" />
-              <h3 className="font-latinka font-light text-cream-light text-[8px] sm:text-[20px] leading-[1.15] sm:leading-snug uppercase tracking-wide">
-                {feature.titleLines[0]}
-                <br />
-                {feature.titleLines[1]}
+              <Image src={feature.icon} alt="" aria-hidden="true" width={72} height={72} className="shrink-0 w-8 h-8 sm:w-[72px] sm:h-[72px]" />
+              <h3 className="font-latinka font-light text-cream-light text-left sm:text-center text-[13px] sm:text-[20px] leading-snug uppercase tracking-[0.12em] sm:tracking-wide">
+                <span className="sm:hidden">{feature.titleLines.join(" ")}</span>
+                <span className="hidden sm:block">
+                  {feature.titleLines[0]}
+                  <br />
+                  {feature.titleLines[1]}
+                </span>
               </h3>
             </motion.div>
           ))}
@@ -122,13 +125,13 @@ export default function BrandStory() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="mt-4 sm:mt-12 lg:mt-6"
+          className="mt-5 sm:mt-12 lg:mt-6"
         >
-          <a href="#hero">
+          <a href="#hero" className="block w-full max-w-[356px] mx-auto sm:inline-block sm:w-auto sm:max-w-none">
             <CTAButton
               variant="gold"
               type="button"
-              className="rounded-lg sm:rounded-xl !px-4 !py-1.5 !text-xs sm:!px-8 sm:!py-3 sm:!text-sm"
+              className="w-full sm:w-auto rounded-xl !px-4 !py-3 !text-sm sm:!px-8 sm:!py-3"
             >
               Get Quote
             </CTAButton>
