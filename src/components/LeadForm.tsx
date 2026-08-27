@@ -88,7 +88,7 @@ export default function LeadForm() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setStatus("error");
-      setStatusMessage("Please correct the highlighted fields below.");
+      setStatusMessage("Please correct the highlighted fields above.");
       return;
     }
 
@@ -134,7 +134,14 @@ export default function LeadForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="relative isolate w-[300px] sm:w-[380px] min-[1360px]:w-[500px]">
+    <div className="relative isolate w-[300px] sm:w-[380px] md:w-[280px] lg:w-[320px] xl:w-[380px] 2xl:w-[460px] min-[1800px]:w-[500px] min-[2200px]:w-[560px]">
+      {/*
+        The frame's height tracks its width (the padding further down is in
+        percentages), so this width ladder is capped by how much vertical room
+        the banner has once the form is overlaid on it at xl — widening too
+        early made the hanging-pin ornament overflow the banner and get
+        clipped on 1366px-class laptops.
+      */}
       {/*
         Desktop/tablet: the scalloped seal + gold trim + hanging pin ornament
         is the supplied frame artwork, not CSS. object-fill stretches it a
@@ -167,7 +174,7 @@ export default function LeadForm() {
         by 1/aspect-ratio to land in the same visual spot despite that.
       */}
       <div className="relative px-[9%] pt-[9%] pb-[10%] sm:px-[9%] sm:pt-[43%] sm:pb-[43%]">
-        <p className="font-display font-semibold text-sm sm:text-[20px] leading-snug text-center text-gold mb-1.5 sm:mb-3 px-1 whitespace-nowrap">
+        <p className="font-display font-semibold text-sm sm:text-[20px] md:text-[13px] lg:text-base xl:text-[20px] leading-snug text-center text-gold mb-1.5 sm:mb-3 px-1 whitespace-nowrap">
           Questions, Feedback, Or Inquiries?
           <br />
           We&rsquo;re Just A Message Away.
@@ -283,7 +290,7 @@ export default function LeadForm() {
             type="submit"
             variant="gold"
             disabled={isSubmitting}
-            className="w-full mt-0.5 sm:mt-1 rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm"
+            className="w-full mt-0.5 sm:mt-1 rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm md:!text-[11px] lg:!text-xs xl:!text-sm"
           >
             {isSubmitting ? "Submitting..." : "Download BROCHURE"}
           </CTAButton>

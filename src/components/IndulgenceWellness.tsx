@@ -30,39 +30,28 @@ export default function IndulgenceWellness() {
       />
 
       <div className="relative mx-auto max-w-content px-4 sm:px-6 lg:px-10">
-        <div className="flex justify-center">
-          <Image
-            src="/images/patterns/red.webp"
-            alt=""
-            aria-hidden="true"
-            width={1020}
-            height={226}
-            className="w-40 sm:w-48 h-auto"
-          />
-        </div>
-
-        <div className="mt-4 sm:mt-8 grid grid-cols-1 lg:grid-cols-[1fr_0.75fr] gap-4 sm:gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.75fr] gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Editorial text block */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="max-w-xl pl-10 sm:pl-16 lg:pl-24"
+            className="max-w-xl pl-6 sm:pl-12 md:pl-2 lg:pl-10 xl:pl-24"
           >
-            <h2 className="leading-[1.1] text-2xl sm:text-4xl lg:text-5xl">
+            <h2 className="leading-[1.1] text-2xl sm:text-4xl md:text-2xl lg:text-3xl xl:text-5xl">
               <span className="block font-latinka font-normal text-teal-deep">Ranging from Pure</span>
-              <span className="block font-canela font-normal text-burgundy text-3xl sm:text-5xl lg:text-6xl">
+              <span className="block font-canela font-normal text-burgundy text-3xl sm:text-5xl md:text-3xl lg:text-4xl xl:text-6xl">
                 Indulgence
               </span>
-              <span className="flex items-baseline mt-2 sm:mt-3 pl-6 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-latinka font-normal text-teal-deep">
+              <span className="flex items-baseline mt-2 sm:mt-3 pl-6 min-[375px]:pl-20 sm:pl-24 md:pl-10 lg:pl-16 xl:pl-28 font-latinka font-normal text-teal-deep">
                 <span className="whitespace-pre">To </span>
                 <span>Wholesome</span>
               </span>
-              <span className="flex items-baseline pl-6 min-[375px]:pl-20 sm:pl-24 lg:pl-28 font-canela font-normal text-burgundy text-3xl sm:text-5xl lg:text-6xl">
+              <span className="flex items-baseline pl-6 min-[375px]:pl-20 sm:pl-24 md:pl-10 lg:pl-16 xl:pl-28 font-canela font-normal text-burgundy text-3xl sm:text-5xl md:text-3xl lg:text-4xl xl:text-6xl">
                 <span
                   aria-hidden="true"
-                  className="invisible whitespace-pre font-latinka text-2xl sm:text-4xl lg:text-5xl"
+                  className="invisible whitespace-pre font-latinka text-2xl sm:text-4xl md:text-2xl lg:text-3xl xl:text-5xl"
                 >
                   To{" "}
                 </span>
@@ -70,9 +59,9 @@ export default function IndulgenceWellness() {
               </span>
             </h2>
 
-            <span className="mt-2 sm:mt-6 block h-[3px] w-64 sm:w-80 lg:w-96 bg-burgundy" />
+            <span className="mt-2 sm:mt-6 block h-[3px] w-64 sm:w-80 md:w-56 lg:w-72 xl:w-96 bg-burgundy" />
 
-            <p className="mt-1.5 sm:mt-4 font-latinka font-normal text-teal-deep text-2xl sm:text-4xl">
+            <p className="mt-1.5 sm:mt-4 font-latinka font-normal text-teal-deep text-2xl sm:text-4xl md:text-xl lg:text-2xl xl:text-4xl">
               Explore our
               <br />
               complete range
@@ -88,7 +77,7 @@ export default function IndulgenceWellness() {
               hidden: {},
               show: { transition: { staggerChildren: 0.15 } },
             }}
-            className="flex flex-col gap-4 sm:gap-8"
+            className="mx-auto w-full max-w-[520px] md:max-w-none flex flex-col gap-4 sm:gap-6 lg:gap-8"
           >
             {wellnessCards.map((card) => (
               <motion.div

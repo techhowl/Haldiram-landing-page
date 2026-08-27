@@ -34,10 +34,6 @@ const hamperCategories: HamperCategory[] = [
   },
 ];
 
-// Swiper's loop mode needs more slides than we have categories, so the deck is
-// repeated; the repeats are hidden from assistive tech and keyboard focus.
-const deckSlides = [...hamperCategories, ...hamperCategories, ...hamperCategories];
-
 export default function HamperCategories() {
   return (
     <section id="hamper-categories" className="relative bg-cream-light py-6 sm:py-20 overflow-hidden">
@@ -84,36 +80,31 @@ export default function HamperCategories() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="sm:hidden mt-6 relative mx-auto flex w-full max-w-[340px] justify-center overflow-hidden py-2"
+          className="md:hidden mt-6 relative mx-auto flex w-full max-w-[420px] justify-center py-2"
         >
           <Swiper
             modules={[EffectCards]}
             effect="cards"
             grabCursor
-            loop
+            rewind
             cardsEffect={{
               perSlideOffset: 9,
               perSlideRotate: 3,
               slideShadows: true,
             }}
-            className="w-[272px] h-[340px]"
+            className="w-[clamp(240px,72vw,320px)] h-[clamp(300px,90vw,400px)]"
           >
-            {deckSlides.map((category, index) => (
+            {hamperCategories.map((category) => (
               <SwiperSlide
-                key={`${category.title}-${index}`}
+                key={category.title}
                 className="rounded-xl overflow-hidden bg-cream-dark shadow-card"
               >
-                <a
-                  href={category.href}
-                  className="block relative w-full h-full"
-                  aria-hidden={index >= hamperCategories.length ? true : undefined}
-                  tabIndex={index >= hamperCategories.length ? -1 : undefined}
-                >
+                <a href={category.href} className="block relative w-full h-full">
                   <Image
                     src={category.image}
                     alt={category.title}
                     fill
-                    sizes="272px"
+                    sizes="(max-width: 767px) 72vw, 320px"
                     className="object-cover"
                   />
                   <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center min-h-[52px] bg-[#FFD279] text-burgundy text-xs font-semibold uppercase tracking-wide leading-snug px-3 py-2">
@@ -125,7 +116,7 @@ export default function HamperCategories() {
           </Swiper>
         </motion.div>
 
-        {/* Tablet and up: three cards side by side */}
+        {/* md and up: three cards side by side */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -134,7 +125,7 @@ export default function HamperCategories() {
             hidden: {},
             show: { transition: { staggerChildren: 0.12 } },
           }}
-          className="hidden sm:grid mt-8 grid-cols-3 gap-6"
+          className="hidden md:grid mt-8 grid-cols-3 gap-3 lg:gap-6"
         >
           {hamperCategories.map((category) => (
             <motion.a
@@ -147,7 +138,7 @@ export default function HamperCategories() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="group block rounded-lg sm:rounded-2xl overflow-hidden shadow-card focus-visible:outline-2 focus-visible:outline-gold"
+              className="group block rounded-xl lg:rounded-2xl overflow-hidden shadow-card focus-visible:outline-2 focus-visible:outline-gold"
             >
               <div className="relative w-full aspect-[4/5] bg-cream-dark">
                 <Image
@@ -156,7 +147,7 @@ export default function HamperCategories() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center min-h-[34px] sm:min-h-[88px] bg-[#FFD279] text-burgundy text-[8px] sm:text-base font-semibold uppercase tracking-wide leading-[1.15] sm:leading-snug py-1 px-1.5 sm:py-4 sm:px-5">
+                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center text-center min-h-[56px] lg:min-h-[72px] xl:min-h-[88px] bg-[#FFD279] text-burgundy text-[11px] lg:text-sm xl:text-base font-semibold uppercase tracking-wide leading-snug py-2 px-2 lg:py-3 lg:px-4 xl:py-4 xl:px-5">
                   {category.title}
                 </div>
               </div>
