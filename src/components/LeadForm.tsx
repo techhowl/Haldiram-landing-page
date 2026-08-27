@@ -184,7 +184,7 @@ export default function LeadForm() {
         <p className="font-display font-semibold text-sm sm:text-[20px] md:text-[13px] lg:text-base xl:text-[20px] leading-snug text-center text-gold mb-1.5 sm:mb-3 px-1 whitespace-nowrap">
           Questions, Feedback, Or Inquiries?
           <br />
-          We&rsquo;re Just A Message Away.
+          We&rsquo;re Just A Form Away.
         </p>
 
         <form onSubmit={handleSubmit} noValidate className="space-y-1.5 sm:space-y-2.5">
