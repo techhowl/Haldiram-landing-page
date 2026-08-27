@@ -25,16 +25,24 @@ export default function Hero() {
     <section id="hero" className="relative isolate bg-teal-deep overflow-hidden">
       {/*
         The banner is sized to the source photo's exact aspect ratio (5760x3400)
-        wherever there is room, so object-cover has nothing to crop. The
-        min-height ladder is what the overlaid form needs: from 768px up the form
-        is taller than the pure ratio would make the banner, and the section's
-        overflow-hidden would clip it, so the banner is floored at the form's
-        height and object-cover takes the difference off the sides instead.
-        Those crops are anchored left until xl, because the hamper boxes sit in
-        the left half of the frame — keeping them in shot also leaves the form
-        sitting on empty curtain.
+        wherever there is room, so object-cover has nothing to crop.
+
+        The min-height ladder is what the overlaid form needs: from 768px up the
+        form is taller than the pure ratio would make the banner, and the
+        section's overflow-hidden would clip it, so the banner is floored at the
+        form's height and object-cover takes the difference off the sides
+        instead. Those crops are anchored left until xl, because the hamper boxes
+        sit in the left half of the frame — keeping them in shot also leaves the
+        form sitting on empty curtain.
+
+        max-height caps the whole thing at the space left below the header, so
+        the fold still fits on a short laptop screen (1366x768, 1536x864) rather
+        than pushing the form's lower half past the bottom of the window. Each
+        min-height is wrapped in min() against that same figure because in CSS a
+        min-height beats a max-height — left unbounded it would win and reopen
+        the overflow it is there to prevent.
       */}
-      <div className="relative w-full aspect-[1572/2089] sm:aspect-[5760/3400] md:min-h-[700px] lg:min-h-[740px] xl:min-h-[800px]">
+      <div className="relative w-full aspect-[1572/2089] sm:aspect-[5760/3400] md:max-h-[calc(100svh_-_80px)] md:min-h-[min(700px,calc(100svh_-_80px))] lg:min-h-[min(740px,calc(100svh_-_80px))] xl:min-h-[min(800px,calc(100svh_-_80px))]">
         <Image
           src="/images/hero/mobile-banner.png"
           alt="Open Haldiram's festive hamper box filled with sweets and dry fruits, set against a deep teal curtain backdrop"

@@ -134,13 +134,20 @@ export default function LeadForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="relative isolate w-[300px] sm:w-[380px] md:w-[280px] lg:w-[320px] xl:w-[380px] 2xl:w-[460px] min-[1800px]:w-[500px] min-[2200px]:w-[560px]">
+    <div className="relative isolate w-[300px] sm:w-[380px] md:w-[280px] lg:w-[320px] xl:w-[380px] 2xl:w-[460px] min-[1800px]:w-[500px] min-[2200px]:w-[560px] md:[@media(min-height:881px)_and_(max-height:960px)]:scale-[0.92] md:[@media(min-height:801px)_and_(max-height:880px)]:scale-[0.88] md:[@media(max-height:800px)]:scale-[0.82]">
       {/*
         The frame's height tracks its width (the padding further down is in
         percentages), so this width ladder is capped by how much vertical room
-        the banner has once the form is overlaid on it at xl — widening too
-        early made the hanging-pin ornament overflow the banner and get
-        clipped on 1366px-class laptops.
+        the banner has once the form is overlaid on it — widening too early made
+        the hanging-pin ornament overflow the banner and get clipped on
+        1366px-class laptops.
+
+        Short laptop screens are handled by scaling instead of by another width
+        step: the card is centred in its flex parent, so the visual shrinks
+        around its own centre and stays inside the banner even though the layout
+        box does not. The scale lives here rather than on the motion wrapper
+        outside, which framer-motion drives with an inline transform that would
+        overwrite it.
       */}
       {/*
         Desktop/tablet: the scalloped seal + gold trim + hanging pin ornament
@@ -279,7 +286,7 @@ export default function LeadForm() {
             />
           </FormField>
 
-          <div aria-live="polite" className="min-h-[1rem] sm:min-h-[1.25rem] text-xs sm:text-sm">
+          <div aria-live="polite" className="min-h-[0.375rem] sm:min-h-[0.5rem] text-xs sm:text-sm">
             {status === "success" && <p className="text-gold font-medium">{statusMessage}</p>}
             {status === "error" && statusMessage && (
               <p className="text-red-200 font-medium">{statusMessage}</p>
@@ -290,7 +297,7 @@ export default function LeadForm() {
             type="submit"
             variant="gold"
             disabled={isSubmitting}
-            className="w-full mt-0.5 sm:mt-1 rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm md:!text-[11px] lg:!text-xs xl:!text-sm"
+            className="w-full rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm md:!text-[11px] lg:!text-xs xl:!text-sm"
           >
             {isSubmitting ? "Submitting..." : "Download BROCHURE"}
           </CTAButton>

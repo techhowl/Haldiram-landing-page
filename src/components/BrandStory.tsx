@@ -28,7 +28,7 @@ export default function BrandStory() {
   return (
     <section
       id="brand-story"
-      className="relative bg-gradient-to-br from-[#084147] to-[#139EAD] py-6 min-[360px]:py-10 sm:py-20 lg:py-12 overflow-hidden min-h-screen min-h-svh flex items-center"
+      className="relative bg-gradient-to-br from-[#084147] to-[#139EAD] py-6 min-[360px]:py-10 sm:py-20 lg:py-12 overflow-hidden min-h-[calc(100vh_-_88px)] min-h-[calc(100svh_-_88px)] flex items-center"
     >
       <div
         aria-hidden="true"
