@@ -180,7 +180,7 @@ export default function LeadForm() {
         these aren't the raw "% down the image" measurements, they're scaled
         by 1/aspect-ratio to land in the same visual spot despite that.
       */}
-      <div className="relative px-[9%] pt-[9%] pb-[10%] sm:px-[9%] sm:pt-[43%] sm:pb-[43%]">
+      <div className="relative px-[9%] pt-[9%] pb-[10%] sm:px-[9%] sm:pt-[43%] sm:pb-[53%]">
         <p className="font-display font-semibold text-sm sm:text-[20px] md:text-[13px] lg:text-base xl:text-[20px] leading-snug text-center text-gold mb-1.5 sm:mb-3 px-1 whitespace-nowrap">
           Questions, Feedback, Or Inquiries?
           <br />
