@@ -9,8 +9,8 @@ interface WellnessCard {
 }
 
 const wellnessCards: WellnessCard[] = [
-  { label: "Mithai Hampers", image: "/images/hero/section3-1.png" },
-  { label: "Dry Fruit Hampers", image: "/images/hero/section3-2.png" },
+  { label: "Mithai Hampers", image: "/images/hero/section3-2.png" },
+  { label: "Dry Fruit Hampers", image: "/images/hero/section3-1.png" },
 ];
 
 export default function IndulgenceWellness() {
