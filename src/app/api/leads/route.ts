@@ -24,6 +24,7 @@ interface ValidatedLead {
   email: string;
   designation: string;
   company: string;
+  city: string;
   numberOfHampers: string;
 }
 
@@ -36,6 +37,7 @@ function validate(body: Record<string, unknown>): {
   const email = sanitize(body.email);
   const designation = sanitize(body.designation);
   const company = sanitize(body.company);
+  const city = sanitize(body.city);
   const numberOfHampers = sanitize(body.numberOfHampers);
 
   const errors: LeadFormErrors = {};
@@ -53,6 +55,7 @@ function validate(body: Record<string, unknown>): {
   }
   if (!designation) errors.designation = "Designation is required.";
   if (!company) errors.company = "Company is required.";
+  if (!city) errors.city = "City is required.";
   if (!numberOfHampers) {
     errors.numberOfHampers = "Number of hampers is required.";
   } else if (!HAMPERS_REGEX.test(numberOfHampers)) {
@@ -64,7 +67,7 @@ function validate(body: Record<string, unknown>): {
   }
 
   return {
-    data: { fullName, contactNumber, email, designation, company, numberOfHampers },
+    data: { fullName, contactNumber, email, designation, company, city, numberOfHampers },
   };
 }
 

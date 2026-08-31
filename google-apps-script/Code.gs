@@ -57,10 +57,15 @@ var COLUMNS = [
 
   { key: 'ipCountry',             label: 'Country' },
   { key: 'ipRegion',              label: 'Region' },
-  { key: 'ipCity',                label: 'City' },
+  { key: 'ipCity',                label: 'City (from IP)' },
   { key: 'userAgent',             label: 'User Agent' },
   { key: 'requestReferer',        label: 'Request Referer' },
-  { key: 'submittedAt',           label: 'Submitted At (ISO)' }
+  { key: 'submittedAt',           label: 'Submitted At (ISO)' },
+
+  // Added after the first deployment. New columns must be appended here,
+  // never inserted mid-list: existing rows were written in the old order and
+  // would end up one column out of step with a re-written header.
+  { key: 'city',                  label: 'City' }
 ];
 
 /** Browser health check — open the /exec URL directly to confirm it's live. */
@@ -126,6 +131,13 @@ function ensureHeader_(sheet) {
   var labels = COLUMNS.map(function (column) {
     return column.label;
   });
+
+  // Adding a COLUMNS entry doesn't widen the sheet's grid, and getRange() past
+  // the last column throws — so make room before reading or writing row 1.
+  var maxColumns = sheet.getMaxColumns();
+  if (maxColumns < labels.length) {
+    sheet.insertColumnsAfter(maxColumns, labels.length - maxColumns);
+  }
 
   if (!headerNeedsWriting_(sheet, labels)) return;
 

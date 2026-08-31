@@ -6,6 +6,7 @@ export interface LeadFormData {
   email: string;
   designation: string;
   company: string;
+  city: string;
   numberOfHampers: string;
   /** Honeypot field — must stay empty. Real users never see or fill it. */
   companyWebsite: string;
@@ -34,6 +35,7 @@ export interface LeadSubmissionPayload {
   email: string;
   designation: string;
   company: string;
+  city: string;
   numberOfHampers: string;
   attribution: AttributionData;
   serverMeta: ServerMeta;

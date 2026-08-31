@@ -47,6 +47,7 @@ export async function appendLeadToSheet(lead: LeadSubmissionPayload): Promise<vo
     email: lead.email,
     designation: lead.designation,
     company: lead.company,
+    city: lead.city,
     numberOfHampers: lead.numberOfHampers,
 
     channel: attribution.channel,

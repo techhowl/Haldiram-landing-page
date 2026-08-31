@@ -42,7 +42,7 @@ export default function Hero() {
         min-height beats a max-height — left unbounded it would win and reopen
         the overflow it is there to prevent.
       */}
-      <div className="relative w-full aspect-[1572/2089] sm:aspect-[5760/3400] md:max-h-[calc(100svh_-_80px)] md:min-h-[min(700px,calc(100svh_-_80px))] lg:min-h-[min(740px,calc(100svh_-_80px))] xl:min-h-[min(800px,calc(100svh_-_80px))]">
+      <div className="relative w-full aspect-[1572/2089] sm:aspect-[5760/3400] md:max-h-[calc(100svh_-_80px)] md:min-h-[min(780px,calc(100svh_-_80px))] lg:min-h-[min(820px,calc(100svh_-_80px))] xl:min-h-[min(880px,calc(100svh_-_80px))]">
         <Image
           src="/images/hero/mobile-banner.png"
           alt="Open Haldiram's festive hamper box filled with sweets and dry fruits, set against a deep teal curtain backdrop"

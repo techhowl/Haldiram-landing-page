@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { LeadFormData, LeadFormErrors, LeadApiResponse } from "@/types/lead";
 import { captureAttribution, getAttribution } from "@/lib/attribution";
 import CTAButton from "./CTAButton";
+import ThankYouModal from "./ThankYouModal";
 
 const INITIAL_STATE: LeadFormData = {
   fullName: "",
@@ -12,6 +13,7 @@ const INITIAL_STATE: LeadFormData = {
   email: "",
   designation: "",
   company: "",
+  city: "",
   numberOfHampers: "",
   companyWebsite: "",
 };
@@ -36,6 +38,7 @@ function validate(data: LeadFormData): LeadFormErrors {
   }
   if (!data.designation.trim()) errors.designation = "Please enter your designation.";
   if (!data.company.trim()) errors.company = "Please enter your company name.";
+  if (!data.city.trim()) errors.city = "Please enter your city.";
   if (!data.numberOfHampers.trim()) {
     errors.numberOfHampers = "Please enter the number of hampers.";
   } else if (!HAMPERS_REGEX.test(data.numberOfHampers.trim())) {
@@ -63,6 +66,8 @@ export default function LeadForm() {
   const [errors, setErrors] = useState<LeadFormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [statusMessage, setStatusMessage] = useState<string>("");
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [submittedFirstName, setSubmittedFirstName] = useState("");
   const formId = useId();
   const isSubmittingRef = useRef(false);
 
@@ -116,11 +121,12 @@ export default function LeadForm() {
       }
 
       setStatus("success");
-      setStatusMessage(
-        "Thank you! Your enquiry has been received — your brochure download will begin shortly."
-      );
+      setStatusMessage("");
+      // Keep the name for the modal greeting before the form is reset.
+      setSubmittedFirstName(formData.fullName.trim().split(/\s+/)[0] ?? "");
       setFormData(INITIAL_STATE);
       downloadBrochure();
+      setShowThankYou(true);
     } catch {
       setStatus("error");
       setStatusMessage(
@@ -134,7 +140,7 @@ export default function LeadForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="relative isolate w-[300px] sm:w-[380px] md:w-[280px] lg:w-[320px] xl:w-[380px] 2xl:w-[460px] min-[1800px]:w-[500px] min-[2200px]:w-[560px] md:[@media(min-height:881px)_and_(max-height:960px)]:scale-[0.92] md:[@media(min-height:801px)_and_(max-height:880px)]:scale-[0.88] md:[@media(max-height:800px)]:scale-[0.82]">
+    <div className="relative isolate w-[300px] sm:w-[380px] md:w-[280px] lg:w-[320px] xl:w-[380px] 2xl:w-[460px] min-[1800px]:w-[500px] min-[2200px]:w-[560px] md:[@media(min-height:961px)_and_(max-height:1060px)]:scale-[0.90] md:[@media(min-height:881px)_and_(max-height:960px)]:scale-[0.85] md:[@media(min-height:801px)_and_(max-height:880px)]:scale-[0.80] md:[@media(max-height:800px)]:scale-[0.74]">
       {/*
         The frame's height tracks its width (the padding further down is in
         percentages), so this width ladder is capped by how much vertical room
@@ -272,6 +278,20 @@ export default function LeadForm() {
             />
           </FormField>
 
+          <FormField id={`${formId}-city`} label="City" error={errors.city}>
+            <input
+              id={`${formId}-city`}
+              name="city"
+              type="text"
+              autoComplete="address-level2"
+              value={formData.city}
+              onChange={(e) => handleChange("city", e.target.value)}
+              aria-invalid={Boolean(errors.city)}
+              className={inputClasses(Boolean(errors.city))}
+              placeholder="City"
+            />
+          </FormField>
+
           <FormField id={`${formId}-numberOfHampers`} label="No. of Hampers" error={errors.numberOfHampers}>
             <input
               id={`${formId}-numberOfHampers`}
@@ -303,6 +323,12 @@ export default function LeadForm() {
           </CTAButton>
         </form>
       </div>
+
+      <ThankYouModal
+        open={showThankYou}
+        onClose={() => setShowThankYou(false)}
+        firstName={submittedFirstName}
+      />
     </div>
   );
 }
