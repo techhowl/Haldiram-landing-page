@@ -28,6 +28,7 @@ var COLUMNS = [
   { key: 'email',                 label: 'Email' },
   { key: 'designation',           label: 'Designation' },
   { key: 'company',               label: 'Company' },
+    { key: 'city',                  label: 'City' },
   { key: 'numberOfHampers',       label: 'No. of Hampers' },
 
   { key: 'channel',               label: 'Channel' },
@@ -65,7 +66,7 @@ var COLUMNS = [
   // Added after the first deployment. New columns must be appended here,
   // never inserted mid-list: existing rows were written in the old order and
   // would end up one column out of step with a re-written header.
-  { key: 'city',                  label: 'City' }
+
 ];
 
 /** Browser health check — open the /exec URL directly to confirm it's live. */

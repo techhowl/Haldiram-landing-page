@@ -52,6 +52,13 @@ type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 const BROCHURE_PATH = "/images/hampers/Haldirams 2026 - Hamper Catalogue.pdf";
 
+/** Fire-and-forget dataLayer push; safe before GTM has loaded. */
+function pushEvent(event: string) {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event });
+}
+
 function downloadBrochure() {
   const link = document.createElement("a");
   link.href = encodeURI(BROCHURE_PATH);
@@ -126,6 +133,7 @@ export default function LeadForm() {
       setSubmittedFirstName(formData.fullName.trim().split(/\s+/)[0] ?? "");
       setFormData(INITIAL_STATE);
       downloadBrochure();
+      pushEvent("download_brochure");
       setShowThankYou(true);
     } catch {
       setStatus("error");
@@ -314,10 +322,11 @@ export default function LeadForm() {
           </div>
 
           <CTAButton
+            id="button-download"
             type="submit"
             variant="gold"
             disabled={isSubmitting}
-            className="w-full rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm md:!text-[11px] lg:!text-xs xl:!text-sm"
+            className="button-download w-full rounded-full !py-1.5 !text-xs sm:!py-3 sm:!text-sm md:!text-[11px] lg:!text-xs xl:!text-sm"
           >
             {isSubmitting ? "Submitting..." : "Download BROCHURE"}
           </CTAButton>
