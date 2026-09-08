@@ -16,6 +16,8 @@ const contacts: ContactPoint[] = [
   { label: "Gujarat", phone: "8956272840" },
   { label: "Hyderabad", phone: "8956272841" },
   { label: "Bangalore", phone: "8956272842" },
+  { label: "Raipur", phone: "96304 74219" },
+  { label: "Madhya Pradesh", phone: "91791 32421" },
 ];
 
 const EMAIL = "gifting@haldirams.com";
@@ -98,7 +100,7 @@ export default function Footer() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
-          className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-x-4 gap-y-5 sm:gap-x-6 sm:gap-y-6"
+          className="mt-6 sm:mt-8 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-x-4 gap-y-5 sm:gap-x-5 sm:gap-y-6"
         >
           {contacts.map((contact) => (
             <motion.li
@@ -109,7 +111,7 @@ export default function Footer() {
               }}
               className="flex flex-col items-center gap-1"
             >
-              <span className="font-latinka font-normal uppercase tracking-[0.12em] text-teal-deep/80 text-[10px] sm:text-xs">
+              <span className="font-latinka font-normal uppercase tracking-[0.1em] text-teal-deep/80 text-[10px] sm:text-xs text-center leading-tight">
                 {contact.label}
               </span>
               <a
@@ -129,7 +131,7 @@ export default function Footer() {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
           className="mt-6 sm:mt-8 flex flex-col items-center gap-1"
         >
-          <span className="font-latinka font-normal uppercase tracking-[0.12em] text-teal-deep/80 text-[10px] sm:text-xs">
+          <span className="font-latinka font-normal uppercase tracking-[0.1em] text-teal-deep/80 text-[10px] sm:text-xs text-center leading-tight">
             Email
           </span>
           <a
