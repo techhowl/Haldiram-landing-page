@@ -11,13 +11,13 @@ interface ContactPoint {
 
 const contacts: ContactPoint[] = [
   { label: "Nagpur", phone: "9370124444" },
-  { label: "Corporate Office", phone: "80050 55661" },
+  { label: "Corporate Office", phone: "8005055661" },
   { label: "Maharashtra", phone: "8956272839" },
   { label: "Gujarat", phone: "8956272840" },
   { label: "Hyderabad", phone: "8956272841" },
   { label: "Bangalore", phone: "8956272842" },
-  { label: "Raipur", phone: "96304 74219" },
-  { label: "Madhya Pradesh", phone: "91791 32421" },
+  { label: "Chattisgarh", phone: "9630474219" },
+  { label: "Madhya Pradesh", phone: "9179132421" },
 ];
 
 const EMAIL = "gifting@haldirams.com";
