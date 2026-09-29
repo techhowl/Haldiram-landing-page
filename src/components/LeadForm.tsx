@@ -50,7 +50,12 @@ function validate(data: LeadFormData): LeadFormErrors {
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
-const BROCHURE_PATH = "/images/hampers/Haldirams 2026 - Hamper Catalogue.pdf";
+/**
+ * Lives under public/brochure/ rather than public/images/, and the file on
+ * disk is hyphenated so the URL needs no escaping. The name the visitor sees
+ * when it saves is set separately, on the link's `download` attribute.
+ */
+const BROCHURE_PATH = "/brochure/haldirams-hamper-catalogue-2026.pdf";
 
 /** Fire-and-forget dataLayer push; safe before GTM has loaded. */
 function pushEvent(event: string) {
@@ -61,7 +66,7 @@ function pushEvent(event: string) {
 
 function downloadBrochure() {
   const link = document.createElement("a");
-  link.href = encodeURI(BROCHURE_PATH);
+  link.href = BROCHURE_PATH;
   link.download = "Haldirams 2026 - Hamper Catalogue.pdf";
   document.body.appendChild(link);
   link.click();
